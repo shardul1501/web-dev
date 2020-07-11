@@ -42,6 +42,7 @@ h5 {
 	margin-bottom: 10px;
 }
 form {
+	display: fixed;
 	width: 350px;
 	height: 450px;
 	background-color: gray;
