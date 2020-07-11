@@ -6,8 +6,16 @@
 body {
 	font-family: sans-serif;
 	overflow: hidden;
-
+	background-image: url('images/wave.jpg');
 }
+/*#img {
+	background: url("images/wave.jpg") no-repeat;
+	background-size: 300px, 100px;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	height: 657px;
+	display: flex;
+}*/
 .wave {
 	position: fixed;
 	bottom: 0;
