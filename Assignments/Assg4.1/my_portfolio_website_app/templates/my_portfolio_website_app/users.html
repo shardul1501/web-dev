@@ -1,0 +1,54 @@
+{% extends 'my_portfolio_website_app/base1.html' %}
+{% load static %}
+
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block headscript %}
+{% endblock headscript %}
+
+
+{% block content %}
+<h3>All Users</h3>
+<hr>
+<div>
+    <table id="my_table" class="display" style="width:  100%;text-align: center;">
+        <thead>
+            <tr>
+                <th>Sr. No</th>
+                <th>Username</th>
+                <th>Email ID</th>
+                <th>Role</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                {% if user.role == 1 %}
+                <td>Super Admin</td>
+                {% elif user.role == 2 %}
+                <td>Admin</td>
+                {% else %}
+                <td>Normal User</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+
+
+{% block script %}
+{% endblock  %}
+
+
+
+{% block extrascript %}
+{% endblock extrascript %}

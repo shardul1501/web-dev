@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>My Portfolio</title>
+
+    <style>
+        #colmn {
+            width: 1000px;
+        }
+
+        thead input {
+            width: 100%;
+        }
+    </style>
+
+    {% block stylesheets %}
+    {% endblock stylesheets %}
+
+    {% block headscript %}
+    {% endblock headscript %}
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="{% static 'my_portfolio_website_app/assets/css/style.css' %}">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href=" https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.dataTables.min.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- SIDEBAR  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h4>My Portfolio Data Manager</h4>
+            </div>
+
+            <ul class="list-unstyled components">
+                {% with url_name=request.resolver_match.url_name %}
+                <li class="{% if url_name == 'all_data' %}active {% endif %}">
+                    <a href="{% url 'my_portfolio_website_app:all_data' %}">All Data</a>
+                </li>
+                <li class="{% if url_name == 'users' %}active {% endif %}">
+                    <a href="{% url 'my_portfolio_website_app:users' %}">Users</a>
+                </li>
+                <li>
+                    <a href=""></a>
+                </li>
+                {% endwith %}
+                <!--
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Leads Status</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="All.html">All</a>
+                        </li>
+                        <li>
+                            <a href="new%20base.html">Pending</a>
+                        </li>
+                        <li>
+                            <a href="InProcess.html">In Process</a>
+                        </li>
+                        <li>
+                            <a href="Rejected.html">Rejected</a>
+                        </li>
+                    </ul>
+                </li>
+-->
+
+            </ul>
+            <ul class="list-unstyled CTAs">
+
+                <li>
+                    <a href="{% url 'my_portfolio_website_app:logout' %}" class="btn" style="background-color: #6d7fcc">
+                        <font color="#fff">Logout</font>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+        <!--SIDEBAR ENDS HERE-->
+
+        <!-- PAGE CONTENT  -->
+        <div id="content">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn" style="background-color: #7386D5;color: #fff">
+                    <i class="fas fa-align-left"></i>
+                </button>
+                <hr>
+                {% block content %}
+                {% endblock %}
+
+            </div>
+        </div>
+
+
+    </div>
+
+    {% block script %}
+    {% endblock  %}
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!--jQuery-->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+
+
+    {% block extrascript %}
+    {% endblock extrascript %}
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#sidebarCollapse').on('click', function() {
+                $('#sidebar, #content').toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#my_table').DataTable();
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'my_portfolio_website_app/assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'my_portfolio_website_app/assets/css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'my_portfolio_website_app/assets/css/iofrm-style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'my_portfolio_website_app/assets/css/iofrm-theme5.css' %}">
+    
+    
+     <script src="{% static 'my_portfolio_website_app/assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'my_portfolio_website_app/assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'my_portfolio_website_app/assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'my_portfolio_website_app/assets/js/main.js' %}"></script>
+</head>
+
+<body style="background-color: #7386D5 !important;">
+    <div class="row">
+        <div class="form-holder" style="background-color: #7386D5 !important;">
+            <div class="form-content" style="background-color: #7386D5 !important;">
+                <div class="form-items" style="margin-top: 5%">
+                    <h3>Login To My Portfolio</h3>
+                    <p>Enter your username and password!</p>
+                    <div class="page-links">
+                        <a href="{% url 'my_portfolio_website_app:login' %}" class="active">Login</a><a href="{% url 'my_portfolio_website_app:register' %}" >Register</a>
+                    </div>
+                    {% if error_message %}
+                    <p style="color: red;">{{ error_message }}</p>
+                    {% endif %}
+                    <form method="POST" action="{% url 'my_portfolio_website_app:login' %}">
+                        {% csrf_token %}
+                        <input class="form-control" type="text" name="username" placeholder="Username" required>
+                        <input class="form-control" type="password" name="password" placeholder="Password" required>
+                        <div class="form-button">
+                            <button id="submit" type="submit" class="ibtn" style="color:#7386D5 ">Login</button> 
+                            <!-- <a href="">Forget password?</a> -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
